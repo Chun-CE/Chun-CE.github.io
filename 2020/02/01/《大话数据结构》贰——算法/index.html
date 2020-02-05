@@ -54,7 +54,7 @@
 <meta property="og:description" content="《大话数据结构》第二章《算法》笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-01T05:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-02T07:32:27.872Z">
+<meta property="article:modified_time" content="2020-02-03T03:16:24.534Z">
 <meta property="article:author" content="郭子淳">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-02 15:32:27" itemprop="dateModified" datetime="2020-02-02T15:32:27+08:00">2020-02-02</time>
+                <time title="修改时间：2020-02-03 11:16:24" itemprop="dateModified" datetime="2020-02-03T11:16:24+08:00">2020-02-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,53 +241,148 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p><strong>算法: 算法是解决特定问题求解步骤的描述,在计算机中表现为指令的有限序列,并且每条指令表示一个或多个操作.</strong>  </p>
+        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>算法: 算法是解决特定问题求解步骤的描述,在计算机中表现为指令的有限序列,并且每条指令表示一个或多个操作.  </p>
 <h2 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h2><p>无重点  </p>
 <h2 id="数据结构与算法关系"><a href="#数据结构与算法关系" class="headerlink" title="数据结构与算法关系"></a>数据结构与算法关系</h2><p>在学习数据结构是经常会涉及到一些算法以及他们之间的关系.  </p>
 <h2 id="两种算法的比较"><a href="#两种算法的比较" class="headerlink" title="两种算法的比较"></a>两种算法的比较</h2><p>例: 现要求编写程序实现求出1+2+3+…+100的和<br>基础算法:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int i,sum &#x3D; 0,n &#x3D; 100;</span><br><span class="line">for (i &#x3D; 1;i &lt;&#x3D; n;i++)</span><br><span class="line">&#123;</span><br><span class="line">   sum &#x3D; sum + i;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;%d&quot;,sum);</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">而根据大家耳熟能详的小高斯的故事,能够得到下面的代码  </span><br><span class="line">进阶算法:</span><br></pre></td></tr></table></figure>
-<p>int i,sum = 0,n = 100;<br>sum = (1 + n) * n/2;<br>printf(“%d”,sum);</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一眼便分出了高下  </span><br><span class="line">## 算法定义  </span><br><span class="line">**算法是解决特定问题求解步骤的描述,在计算机中表现为指令的有限序列,并且每条指令表示一个或多个操作.**  </span><br><span class="line">不同的问题一般会有不同的算法,同一个问题有事也会有很多种算法,这时候就要具体情况具体分析,选出最合适的那个.  </span><br><span class="line">## 算法的特性  </span><br><span class="line">**算法具有五个基本特性: 输入、输出、有穷性、确定性和可行性**  </span><br><span class="line">### 输入输出  </span><br><span class="line">**算法具有另个或多个输入，至少有一个或多个输出。**  </span><br><span class="line">### 有穷性  </span><br><span class="line">**有穷性： 值算法在执行有限的步骤之后，自动结束而不会出现无限循环，并且每一个步骤课在接受的时间内完成。**  </span><br><span class="line">### 确定性  </span><br><span class="line">**确定性： 算法的每一步骤都具有确定的含义，不会出现二义性。**  </span><br><span class="line">### 可行性  </span><br><span class="line">**可行性： 算法的每一步都必须是可行的，也就是说，每一步都能通过执行有限次数完成。**  </span><br><span class="line">## 算法设计的要求  </span><br><span class="line">算法不是唯一的，没有标准答案，但也有其需要满足的要求。  </span><br><span class="line">### 正确性  </span><br><span class="line">**正确性：算法的正确性是指算法至少应该具有输入、输出和加工处理无歧义性、能正确反映问题的需求、能够得到问题的正确答案。**  </span><br><span class="line">### 可读性  </span><br><span class="line">**可读性： 算法设计的另一目的是为了便于阅读、理解和交流。**  </span><br><span class="line">### 健壮性  </span><br><span class="line">**健壮性： 当输入数据不合法事，算法也能做出相应的处理，而不是产生异常或莫名其妙的结果。**  </span><br><span class="line">### 时间效率高和存储量低  </span><br><span class="line">## 算法效率的度量方式  </span><br><span class="line">###  事后统计方法  </span><br><span class="line">**事后统计方法： 这种方法主要是通过设计好的测试程序和数据，利用计算机计时器对不同算法编制的程序的运行时间进行比较，从而确定算法效率的高低。**  </span><br><span class="line">缺陷：  </span><br><span class="line">* 需依据算法实现编好程序，不仅花费大量时间精力，且如果算法不满足需求，就白忙活一场了。  </span><br><span class="line">* 在不同的机器上，相同的算法的效率会有差异，有时会掩盖算法本身的优劣。  </span><br><span class="line">* 算法的测试数据设计困难，并且程序运行时间往往和测试数据的规模有很大关系，越高效的算法，越需要大规模的实验数据才能比较差异。  </span><br><span class="line">故，弃  </span><br><span class="line">### 事前分析估计方法  </span><br><span class="line">**事后分析估计方法： 在计算机程序便之前，依据统计方法对算法进行估算。**  </span><br><span class="line">一个高级程序语言编写的程序在计算机上运行是所消耗的时间取决于下列因素：  </span><br><span class="line">1. 算法采用的策略、方法。  </span><br><span class="line">2. 编译产生的代码质量。  </span><br><span class="line">3. 问题的输入规模。  </span><br><span class="line">4. 及其执行指令的速度。  </span><br><span class="line">其中，第2条有编译软件来支持，第4条有硬件性能支持。所以，在分析估计算法质量时，我们主要看**问题的输入规模**。  </span><br><span class="line">再回到上一章举的例子，量中秋和算法：  </span><br><span class="line">第一种算法：</span><br></pre></td></tr></table></figure>
-<p>int i,sum = 0,n = 100;  //执行 1 次<br>for (i = 1;i &lt;= n;i++)  //执行 n+1 次<br>{<br>    sum = sum + i;      //执行 n 次<br>}<br>printf(“%d”,sum);       //执行 1 次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第二种算法:</span><br></pre></td></tr></table></figure>
-<p>int sum = 0,n = 100;    //执行 1 次<br>sum = (1 + n) * n/2;    //执行 1 次<br>printf(“%d”,sum);       //执行 1 次</p>
-<p>```<br>显然,第一种算法共执行了 <strong>1+(n+1)+n+1 = 2n+3</strong> 次;而第二种算法共执行了 <strong>1+1+1 = 3</strong> 次;随着数据的增大,<strong>2n+3</strong>和<strong>3</strong>的差距会越来越大.  </p>
-<h2 id="函数的渐进增长"><a href="#函数的渐进增长" class="headerlink" title="函数的渐进增长"></a>函数的渐进增长</h2><p>现有两个算法A和B,算法A需执行 2n+3 次操作,算法B需执行 3n+1 次操作.<br>速度比较:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i,sum &#x3D; 0,n &#x3D; 100;</span><br><span class="line">for (i &#x3D; 1;i &lt;&#x3D; n;i++)</span><br><span class="line">&#123;</span><br><span class="line">   sum &#x3D; sum + i;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;%d&quot;,sum);</span><br></pre></td></tr></table></figure>
+<p>而根据大家耳熟能详的小高斯的故事,能够得到下面的代码<br>进阶算法: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int i,sum &#x3D; 0,n &#x3D; 100;</span><br><span class="line">sum &#x3D; (1 + n) * n&#x2F;2;</span><br><span class="line">printf(&quot;%d&quot;,sum);</span><br></pre></td></tr></table></figure>
+<p>一眼便分出了高下  </p>
+<h2 id="算法定义"><a href="#算法定义" class="headerlink" title="算法定义"></a>算法定义</h2><p>算法是解决特定问题求解步骤的描述,在计算机中表现为指令的有限序列,并且每条指令表示一个或多个操作.<br>不同的问题一般会有不同的算法,同一个问题有事也会有很多种算法,这时候就要具体情况具体分析,选出最合适的那个.  </p>
+<hr>
+<h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><p>算法具有五个基本特性: 输入、输出、有穷性、确定性和可行性  </p>
+<ul>
+<li><p>输入输出: 算法具有另个或多个输入，至少有一个或多个输出。  </p>
+</li>
+<li><p>有穷性：值算法在执行有限的步骤之后，自动结束而不会出现无限循环，并且每一个步骤课在接受的时间内完成。  </p>
+</li>
+<li><p>确定性：算法的每一步骤都具有确定的含义，不会出现二义性。  </p>
+</li>
+<li><p>可行性：算法的每一步都必须是可行的，也就是说，每一步都能通过执行有限次数完成。  </p>
+</li>
+</ul>
+<hr>
+<h2 id="算法设计的要求"><a href="#算法设计的要求" class="headerlink" title="算法设计的要求"></a>算法设计的要求</h2><p>算法不是唯一的，没有标准答案，但也有其需要满足的要求。    </p>
+<ul>
+<li>正确性：算法的正确性是指算法至少应该具有输入、输出和加工处理无歧义性、能正确反映问题的需求、能够得到问题的正确答案。  </li>
+<li>可读性： 算法设计的另一目的是为了便于阅读、理解和交流。  </li>
+<li>健壮性： 当输入数据不合法事，算法也能做出相应的处理，而不是产生异常或莫名其妙的结果。  </li>
+<li>时间效率高和存储量低  </li>
+</ul>
+<hr>
+<h2 id="算法效率的度量方式"><a href="#算法效率的度量方式" class="headerlink" title="算法效率的度量方式"></a>算法效率的度量方式</h2><h3 id="事后统计方法"><a href="#事后统计方法" class="headerlink" title="事后统计方法"></a>事后统计方法</h3><p>事后统计方法： 这种方法主要是通过设计好的测试程序和数据，利用计算机计时器对不同算法编制的程序的运行时间进行比较，从而确定算法效率的高低。<br>缺陷：  </p>
+<ol>
+<li>需依据算法实现编好程序，不仅花费大量时间精力，且如果算法不满足需求，就白忙活一场了。  </li>
+<li>在不同的机器上，相同的算法的效率会有差异，有时会掩盖算法本身的优劣。  </li>
+<li>算法的测试数据设计困难，并且程序运行时间往往和测试数据的规模有很大关系，越高效的算法，越需要大规模的实验数据才能比较差异。  </li>
+</ol>
+<p>故，弃  </p>
+<h3 id="事前分析估计方法"><a href="#事前分析估计方法" class="headerlink" title="事前分析估计方法"></a>事前分析估计方法</h3><p>事后分析估计方法： 在计算机程序便之前，依据统计方法对算法进行估算。<br>一个高级程序语言编写的程序在计算机上运行是所消耗的时间取决于下列因素：  </p>
+<ol>
+<li>算法采用的策略、方法。  </li>
+<li>编译产生的代码质量。  </li>
+<li>问题的输入规模。  </li>
+<li>及其执行指令的速度。  </li>
+</ol>
+<p>其中，第2条有编译软件来支持，第4条有硬件性能支持。所以，在分析估计算法质量时，我们主要看<strong>问题的输入规模</strong>。<br>再回到上一章举的例子，量中秋和算法：<br>第一种算法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int i,sum &#x3D; 0,n &#x3D; 100;  &#x2F;&#x2F;执行 1 次</span><br><span class="line">for (i &#x3D; 1;i &lt;&#x3D; n;i++)  &#x2F;&#x2F;执行 n+1 次</span><br><span class="line">&#123;</span><br><span class="line">    sum &#x3D; sum + i;      &#x2F;&#x2F;执行 n 次</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;%d&quot;,sum);       &#x2F;&#x2F;执行 1 次</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">第二种算法:</span><br></pre></td></tr></table></figure><br>int sum = 0,n = 100;    //执行 1 次<br>sum = (1 + n) <em> n/2;    //执行 1 次<br>printf(“%d”,sum);       //执行 1 次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">显然,第一种算法共执行了 **1+(n+1)+n+1 &#x3D; 2n+3** 次;而第二种算法共执行了 **1+1+1 &#x3D; 3** 次;随着数据的增大,**2n+3**和**3**的差距会越来越大.  </span><br><span class="line">***</span><br><span class="line">## 函数的渐进增长</span><br><span class="line">1. 输入规模n在没有限制的情况下,只要超过一个数值N,这个函数就总是大于顶一个函数,我们称这个函数是**渐进增长**的. </span><br><span class="line">2. 与最高次项相乘的常数并不重要</span><br><span class="line">3. 最高次项的指数大的,函数随着n的增长,结果也会变得增长特别快</span><br><span class="line">4. 判断一个算法的效率时,函数中的常数和其他次要项常常可以忽略,更应该注意最高次项的阶数.   </span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">## 算法时间复杂度  </span><br><span class="line">### 算法时间复杂度定义  </span><br><span class="line">在进行算法分析时,语句总的执行次数 T(n)是关于问题规模n的函数,进而分析T(n)虽n的变化情况并确定T(n)的数量级。算法的时间复杂度，也就是算法的时间度量，记作： T(n)&#x3D;O(f(n))。它表示虽问题规模n的增大，算法执行时间的增长率和f（n）的增长率相同，乘坐算法的监禁时间复杂度，简称为时间复杂度。其中f（n）是问题规模n的某个函数。这样用大写O（）来体现算法时间福大度的激发，称之为**大O记法**。  </span><br><span class="line">一般情况下，随着n的增大，T（n）增长最慢的算法为最优算法。  </span><br><span class="line">### 推导大O阶方法</span><br><span class="line">推导大O阶步骤：</span><br><span class="line">1. 用常数1取代运行时间中的所有加法常数。</span><br><span class="line">2. 在修改后的运行次数函数中，只保留最高阶项。</span><br><span class="line">3. 如果最高阶项存在且不是1，则去除与这个项相乘的常数。</span><br><span class="line">### 常数阶</span><br><span class="line">*例一: O(1)*</span><br></pre></td></tr></table></figure><br>int sum = 0,n = 100;    //执行一次<br>sum = (1+n)</em>n/2;        //执行一次<br>printf(“%d”,sum);       //执行一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line">int sun &#x3D; 0,n &#x3D; 100;    </span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">sum &#x3D; (1+n)*n&#x2F;2;</span><br><span class="line">printf(&quot;%d&quot;,sum);</span><br></pre></td></tr></table></figure><br><em>例二: O(n)</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">for(i &#x3D; 0;i &lt; n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;*时间复杂度为O(1)的程序步骤序列*&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><em>例三: O(log(n))</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int count &#x3D; 1;</span><br><span class="line">while (count &lt; n)</span><br><span class="line">&#123;</span><br><span class="line">    count &#x3D; count * 2;</span><br><span class="line">    &#x2F;*时间复杂度为O(1)的程序步骤序列*&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>由于每次count乘以2之后,就距离n更近了一分,也就是说有多少个2 相乘后大于n,则会退出循环.由$2^x = n$得到 $x = log_2n$ 。搜索一这个循环的时间复杂度为O(logn)。  </p>
+<h3 id="平方阶"><a href="#平方阶" class="headerlink" title="平方阶"></a>平方阶</h3><p><em>例: $O(n^2)$</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">for (i &#x3D; 0;i &lt; n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    for (j &#x3D; 0;j &lt; n;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;*时间复杂度为O(1)的程序步骤序列*&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">for(i &#x3D; 0;i&lt;n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    for (j &#x3D; i;j &lt; n;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;*时间复杂度为O(1)的程序步骤序列*&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*由于当i &#x3D; 0是,内循环执行了n次,当i&#x3D;1是,执行了n-1次,...当i&#x3D;n-1是,执行了1次.所以总执行次数为:  </span><br><span class="line">n+(n-1)+(n-2)+...+1 &#x3D; *&#x2F;</span><br></pre></td></tr></table></figure></p>
+<p><em>例: $O(m\</em>n)$*<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">for (i&#x3D;0;i&lt;m;i++&gt;)</span><br><span class="line">&#123;</span><br><span class="line">    for (j &#x3D; 0;j &lt; n;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;*时间复杂度为O(1)的程序步骤序列*&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h2><div class="table-container">
 <table>
 <thead>
 <tr>
-<th>次数</th>
-<th>算法A(2n+3)</th>
-<th>算法B(3n+1)</th>
+<th>执行次数函数</th>
+<th>阶</th>
+<th>非正式术语</th>
+<th>复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>n = 1</td>
-<td>5</td>
+<tbody>
+<tr>
+<td>12</td>
+<td>O(1)</td>
+<td>常数阶</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5$log_2n+20$</td>
+<td>O(logn)</td>
+<td>对数阶</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2n+3</td>
+<td>O(n)</td>
+<td>线性阶</td>
+<td>3</td>
+</tr>
+<tr>
+<td>$2n+3nlog_2n+19$</td>
+<td>O(nlogn)</td>
+<td>nlogn阶</td>
 <td>4</td>
 </tr>
 <tr>
-<td>n = 2</td>
-<td>7</td>
+<td>$3n^2+2n+1$</td>
+<td>O($n^2$)</td>
+<td>平方阶</td>
+<td>5</td>
+</tr>
+<tr>
+<td>$6n^3+2n^2+3n+4$</td>
+<td>O($n^3$)</td>
+<td>立方阶</td>
+<td>6</td>
+</tr>
+<tr>
+<td>$2^n$</td>
+<td>O($2^n$)</td>
+<td>指数阶</td>
 <td>7</td>
 </tr>
 <tr>
-<td>n = 3</td>
+<td>n!</td>
+<td>O(n!)</td>
+<td>阶乘阶</td>
+<td>8</td>
+</tr>
+<tr>
+<td>$n^n$</td>
+<td>O($n^n$)</td>
+<td>幂指阶</td>
 <td>9</td>
-<td>10</td>
 </tr>
-<tr>
-<td>n = 10</td>
-<td>23</td>
-<td>31</td>
-</tr>
-<tr>
-<td>n = 100</td>
-<td>203</td>
-<td>301</td>
-</tr>
-</tbody></table>
-<p>可以看出n&lt;2时,B更快;随着n的增加,当n&gt;2时A更快,而且与B的差距越来越大.<br>给出定义如下,输入规模n在没有限制的情况下,只要超过一个数值N,这个函数就总是大于顶一个函数,我们称这个函数是<strong>渐进增长</strong>的.<br>现令算法C是4n+8,算法D是 $2n^2$</p>
+</tbody>
+</table>
+</div>
+<p>对于n很大的情况,O($n^3$),O($2^n$),O(n!)的运行时间将会是超乎想象的不切实际,所以一般不讨论这些情况  </p>
+<hr>
+<h2 id="最坏情况与平均情况"><a href="#最坏情况与平均情况" class="headerlink" title="最坏情况与平均情况"></a>最坏情况与平均情况</h2><p>最坏情况运行时间是一种保证,在实际应用中是一种最重要的需求,通常除非特别指定,我们提到的运行时间都是最坏情况的运行时间.<br>平均时间是所有情况中做有意义的,因为他是期望的运行时间,但平均时间一般难以通过分析得到,需通过数据估算得出.<br>一般在没有特殊情况的说明下都是值最坏时间复杂度,不仅易于分析计算,又能满足甲方各种刁难.  </p>
+<hr>
+<h2 id="算法空间复杂度"><a href="#算法空间复杂度" class="headerlink" title="算法空间复杂度"></a>算法空间复杂度</h2><p>算法的空间复杂度通过计算算法所需的存储空间实现,算法空间复杂度的计算公式基座:S(n) = O(f(n)),其中,n为问题的规模,f(n)为语句关于n所占存储空间的函数.  </p>
+<hr>
+<h2 id="总结回顾"><a href="#总结回顾" class="headerlink" title="总结回顾"></a>总结回顾</h2><ol>
+<li>数据结构与算法是相互依赖不可分割的</li>
+<li>算法的定义: 算法是解决特定问题求解步骤的描述,在计算机中为指令的有限序列,并且每条指令表示一个或多个操作.</li>
+<li>算法的特性: 有穷性、确定性、可行性、输入、输出</li>
+<li>算法的设计的要求： 正确性、可读性、健壮性、高效率和地存储量需求。</li>
+<li>算法特性与算法设计容易混淆，需对比记忆（好像我并不知道什么事算法设计）。</li>
+<li>算法的度量方法： 时候统计方法（不科学、不准确）、事前分析估算方法。</li>
+<li>函数的渐进增长： n&gt;N时,f(n)&gt;g(n),就说f(n)的增长渐进快于g(n).随着n值的增大,优的算法会越优,差的算法会越差.  </li>
+<li>算法时间复杂度T(n) = O(f(n)),推导大O阶的步骤<ul>
+<li>用常数1取代运行时间中的所有甲方常数.</li>
+<li>在修改后的运行次数函数中,只保留最高阶项.</li>
+<li>如果最高阶项存在且不是1,则去除与这个项相乘的常数.</li>
+</ul>
+<ul>
+<li>常见的复杂度排序:<br>$0(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; 0(n^2 ) &lt; 0(n^3 ) &lt; 0(2^n) &lt; O(n!) &lt; O(n^n)$</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="结尾语"><a href="#结尾语" class="headerlink" title="结尾语"></a>结尾语</h2><p>愚公移山固然可敬,但TNT和卡车则更为高效,CPU再快速的发展,也抵不过一个好算法来的实在.</p>
 
     </div>
 
@@ -324,7 +419,10 @@
     <a href="/2020/01/31/%E3%80%8A%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%8B%E5%A3%B9%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/" rel="prev" title="《大话数据结构》壹——数据结构绪论">
       <i class="fa fa-chevron-left"></i> 《大话数据结构》壹——数据结构绪论
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/03/%E3%80%8A%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%8B%E5%8F%81%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="next" title="《大话数据结构》叁——线性表">
+      《大话数据结构》叁——线性表 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -384,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开场白"><span class="nav-number">1.1.</span> <span class="nav-text">开场白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构与算法关系"><span class="nav-number">1.2.</span> <span class="nav-text">数据结构与算法关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种算法的比较"><span class="nav-number">1.3.</span> <span class="nav-text">两种算法的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的渐进增长"><span class="nav-number">1.4.</span> <span class="nav-text">函数的渐进增长</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开场白"><span class="nav-number">1.1.</span> <span class="nav-text">开场白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构与算法关系"><span class="nav-number">1.2.</span> <span class="nav-text">数据结构与算法关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种算法的比较"><span class="nav-number">1.3.</span> <span class="nav-text">两种算法的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法定义"><span class="nav-number">1.4.</span> <span class="nav-text">算法定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的特性"><span class="nav-number">1.5.</span> <span class="nav-text">算法的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法设计的要求"><span class="nav-number">1.6.</span> <span class="nav-text">算法设计的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法效率的度量方式"><span class="nav-number">1.7.</span> <span class="nav-text">算法效率的度量方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事后统计方法"><span class="nav-number">1.7.1.</span> <span class="nav-text">事后统计方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事前分析估计方法"><span class="nav-number">1.7.2.</span> <span class="nav-text">事前分析估计方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平方阶"><span class="nav-number">1.7.3.</span> <span class="nav-text">平方阶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的时间复杂度"><span class="nav-number">1.8.</span> <span class="nav-text">常见的时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最坏情况与平均情况"><span class="nav-number">1.9.</span> <span class="nav-text">最坏情况与平均情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法空间复杂度"><span class="nav-number">1.10.</span> <span class="nav-text">算法空间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结回顾"><span class="nav-number">1.11.</span> <span class="nav-text">总结回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结尾语"><span class="nav-number">1.12.</span> <span class="nav-text">结尾语</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -400,7 +498,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -506,6 +604,56 @@
 
 
   
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 
