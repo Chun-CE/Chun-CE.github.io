@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-mystyle.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-mystyle.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-mystyle.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://Chun-CE.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","width":200,"display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="第一门课 神经网络和深度学习(Neural Network and Deep Learning)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吴恩达深度学习——1神经网络和深度学习">
+<meta property="og:url" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+<meta property="og:site_name" content="Chun-CE">
+<meta property="og:description" content="第一门课 神经网络和深度学习(Neural Network and Deep Learning)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1-2-1.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1-2-2.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1-2-3.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-1-1.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-1-2.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-3-1.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-3-2.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-4-1.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-4-2.jpg">
+<meta property="article:published_time" content="2020-02-11T10:45:36.000Z">
+<meta property="article:modified_time" content="2020-02-15T10:05:15.086Z">
+<meta property="article:author" content="郭子淳">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="神经网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1-2-1.jpg">
+
+<link rel="canonical" href="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>吴恩达深度学习——1神经网络和深度学习 | Chun-CE</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chun-CE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/blog_face2.jpg">
+      <meta itemprop="name" content="郭子淳">
+      <meta itemprop="description" content="越努力，越幸运！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chun-CE">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          吴恩达深度学习——1神经网络和深度学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-11 18:45:36" itemprop="dateCreated datePublished" datetime="2020-02-11T18:45:36+08:00">2020-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-15 18:05:15" itemprop="dateModified" datetime="2020-02-15T18:05:15+08:00">2020-02-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习笔记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">第一门课 神经网络和深度学习(Neural Network and Deep Learning)</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="深度学习引言"><a href="#深度学习引言" class="headerlink" title="深度学习引言"></a>深度学习引言</h1><h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><ol>
+<li>在第一门课程中,你讲学习如何建立神经网络(包含一个深度神经网络),以及如何在数据上面训练他们.在这门课程的结尾,你讲用一个深度神经网络进行辨认猫.  <ol>
+<li>接下来在第二门课程中,将用三周时间进行深度学习方面的时间,学习严密地构件神经网络,如何真正让它表现良好,因此你需要学习超参数调整、正则化、诊断偏差和方差以及一些高级优化算法，比如<strong>Momentum</strong>和<strong>Adam</strong>算法。  </li>
+<li>第三门课程中，我们将用两周时间来学习如何结构化机器学习工程。适时证明，构建机器学习系统的策略改变了深度学习的错误。举个例子:你分割数据的方式,分割成训练集、比较集或改变的验证集，以及测试集合，改变了深度学习的错误  </li>
+<li>在第四门课程中，我们将会提到卷积神经网络(<strong>CNN(s)</strong>),它经常被用于图像处理领域.</li>
+<li>最后在第五门课程中,你讲学到序列模型,以及如何将它们应用于自然语言处理,以及其他问题.序列模型包括的模型有循环神经网络(RNN)、全称是长短期记忆网络(LSTM)<br>因此,通过这些课程,你讲学习深度学习的这些工具,你将能够无去使用他们去做一些神奇的事情,并借此来提升你的职业生涯.</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="什么是神经网络-What-is-Neural-Network"><a href="#什么是神经网络-What-is-Neural-Network" class="headerlink" title="什么是神经网络?(What is Neural Network)"></a>什么是神经网络?(What is Neural Network)</h2><p>神经网络究竟是什么?<br>让我们从一个放假预测的例子开始讲起.假设你有一个数据集,它包含了流动房子的信息.所以,你知道房屋的面积是多少平方英尺或者平方米,并且知道房屋价格.这时,你想要拟合一个根据房屋面积预测房价的函数.<br>如果你对线性回归很熟悉,计划把这些数据拟合为一条直线,于是得到:<br><img src="1-2-1.jpg" alt="1-2-1"><br>我们知道价格永远不会是附属,因此,为了代替一条可能会让价格为负的直线,我们把直线弯曲一点,让它在零结束.这条粗的蓝线最终就是你的函数,用于根据房屋面积预测价格.<br>我们把房屋的面积作为神经网络的输入(称之为x),通过一个结点(一个小圆圈),最终输出了价格(我们用y表示).其实这个小圆圈就是一个单独的神经元,接着你的网络实现了左边这个函数的功能.<br>从趋近于零开始,然后变成一条直线.这个函数被称为R额LU激活函数,他的全称是Rectified Linear Unit.rectify(修正)可以理解成max(0,x),这也是你得到一个这种形状的函数的原因.如果这是一个单神经网络,不管规模大小,它正是通过把这些单个神经元叠加在一起来形成的.<br>然我们看一个例子,我们不仅仅用房屋的面积来预测它的价格,现在你有了一些有关房屋的其他特征,比如卧室的数量,或许有一个很重要的因素:一家人的数量也会影响到房屋的价格,这个房屋能住下一家人吗?二者确实是基于房屋大小,以及真正决定一栋房子是否能适合你们家庭人数的卧室数.在美国,邮政编码(zip code)能够反映步行化程度和富裕程度.<br><img src="1-2-2.jpg" alt="1-2-2"><br>在图上的每一个小圆圈都可以是ReLU的一部分,也就是指修正线性单元,或者其他稍微非线性的函数.基于房屋面积和卧室数量,可以估算家庭人口.基于邮编,可以估测步行化程度或者学校的质量.这些都将决定人们愿意花多少钱在房子上.对于一个房子来说,这些都是与他息息相关的,家庭人口,步行化程度以及学校的质量都能够帮助你预测房屋的价格.<br>以此为例,x是所有的这四个输入,y是你尝试预测的价格,把这些单个的神经元叠加在一起,我们就有了一个稍大的神经网络.<br><img src="1-2-3.jpg" alt="1-2-3"><br>神经网络的一部分神奇之处在与,当你实现它之后,你要做的只是输入x就能得到输出y.因为它可以自己计算你训练集中样本的数目以及所有的中间过程.</p>
+<hr>
+<h2 id="神经网络的监督学习-Supervised-Learning-with-Neural-Networks"><a href="#神经网络的监督学习-Supervised-Learning-with-Neural-Networks" class="headerlink" title="神经网络的监督学习(Supervised Learning with Neural Networks)"></a>神经网络的监督学习(Supervised Learning with Neural Networks)</h2><p>几乎所有由神经网络创造的经济价值,本质上都离不开一种叫做<strong>监督学习</strong>的机器学习类别<br>word:{卷积(Convolutional Neural Network  CNN)<br>    递归神经网络(Recurrent Neural Network  RNN)<br>}</p>
+<hr>
+<h1 id="神经网络的编程基础-Basics-of-Neural-Network-programming"><a href="#神经网络的编程基础-Basics-of-Neural-Network-programming" class="headerlink" title="神经网络的编程基础(Basics of Neural Network programming)"></a>神经网络的编程基础(Basics of Neural Network programming)</h1><h2 id="二分类-Binary-Classification"><a href="#二分类-Binary-Classification" class="headerlink" title="二分类(Binary Classification)"></a>二分类(Binary Classification)</h2><p>学会如何处理训练集<br>在神经网络的计算中,通常现有一个叫抢钱暂停(forward pause)或者叫向前传播(forward propagation)的步骤,接着有一个叫做反向暂停(backward pause)或者叫做反向传播(backward paopagation)的步骤.<br>在课程中将会使用二分类的算法,例如识别一只猫,输出标签1则为是猫,说出标签0则不是猫.<br><img src="2-1-1.jpg" alt="2-1-1"><br>为了保存一张图片,需要保存三个矩阵,分别对应图片中红绿蓝三种颜色通道,如果图片大小为64x64像素,那么就有三个64x64的矩阵.<br><img src="2-1-2.jpg" alt="2-1-2"><br>将这些像素值提取出来,然后放入一个特征向量x.为了把这些像素值转换为特征向量x,我们把所有的像素都取出来,得到一个吧图片中所有红绿蓝像素值都列出来的特征向量.如果图片的大小是64x64像素,那么x的总维度就是64*64*3=12288.现在用n_x=12288表示输出特征向量的维度.<br><strong>符号定义:</strong>  </p>
+<ul>
+<li>x:表示一个n_x维数据,为输入数据,维度为(n_x,1)  </li>
+<li>y:表示输出结果,取值为(0,1);</li>
+<li>$(x^{(i)},y^{(i)})$:表示第i组数据,可能是训练数据,也可能是测试数据,此处默认为训练数据;</li>
+<li>X = [$x^{(1)},x^{(2)},…,x^{(m)}$]:表示所有的训练数据集的输入值,放在一个n_x * m的矩阵中,其中m表示样本数目;</li>
+<li>Y = [$y^{(1)},y^{(2)},…,y^{(m)}$]:对应表示所有训练数据集的输出值,维度为1*m<br>用一对(x,y)来表示一个单独的样本,x表示n_x维的特征向量,y表示标签(输出结果)只能为0or1.而训练集将有m个训练样本组成,其中$(x^{(1)},y^{(1)})$表示第一个样本的输入输出,以此类推,然后所有的这些仪器表示整个训练集.又是偶户为了强调这是训练样本的个数,会写作$M_{train}$,当涉及到测试集的时候,我们会之用$M_{test}$来表示测试机的样本数.<br>为了能把数据集表示的更紧凑一点,我们会定义一个矩阵用大写的X表示,他由输入向量$x^{(1)};x^{(2)}$等组成,把$x^{(1)}$作为第一列,$x^{(2)}$作为第二列…就得到了训练集矩阵X,所以这个矩阵由m列,m是训练集的样本数量,然后这个矩阵的高度即为$n_x$.<br>简单温习一下:X是一个规模为$n_x$乘以m的矩阵,当用python来实现时,会用到X.shape(),这是一条Python命令,用于显示矩阵的规模,即X.shape等于$(n_x,m)$.<br>那么怎么输出标签y呢?用Y=[$y^{(1)},y^{(2)},…,y^{(m)}$]来表示,是一个1乘以m的矩阵,同样适用Y.shape==(1,m)</li>
+</ul>
+<hr>
+<h2 id="逻辑回归-Logistic-Regression"><a href="#逻辑回归-Logistic-Regression" class="headerlink" title="逻辑回归(Logistic Regression)"></a>逻辑回归(Logistic Regression)</h2><p>本节将会主要极少逻辑回归的Hypothesis Function(假设函数)<br>为了时变图片,你想要一个算法能够输出预测,现只能称之为估计值$\hat y$,也就是对实际值y的估计.更正式的说,你想让$\hat y$表示y等于1的一种坑性或是机会,前提条件是给定了输入特征X,换句话说,如果X是那张似乎是猫的图片,你想让$\hat y$来表示这是一只猫的图片的纪律是多大. X是一个$n_x$维向量(相当于有$n_x$个特征的特征向量).我们用w来表示逻辑回归的参数,这也是一个$n_x$维向量(因为w实际上是特征权重,维度和特征向量相同),参数里面还有b,这是一个实数(表示偏差).所以给出输入x以及参数w和b之后,就可以得出 $\hat y$ = $w^Tx+b$ ($w^T$表示w的转置)<br>这时候我们的道德是一个关于输入x的线性函数,但却不是一个好的算法,因为如果想要$\hat y$表示实际值y等于1的几率的话,$\hat y$应该在0到1之间.但$x^T+b$可能要比1大或者为负值,对于想要的在0和1之间的概率来说是没有意义的.因此,在逻辑回归中,我们的输出上面的线性函数作为自变量的sigmoid函数.<br>关于sigmoid的公式:$\sigma(z) = (1 + e^{-z})^{-1}$</p>
+<hr>
+<h2 id="逻辑回归的代价函数-Logistic-Regression-Cost-Function"><a href="#逻辑回归的代价函数-Logistic-Regression-Cost-Function" class="headerlink" title="逻辑回归的代价函数(Logistic Regression Cost Function)"></a>逻辑回归的代价函数(Logistic Regression Cost Function)</h2><p>为什么需要代价函数:<br>为了训练逻辑回归模型的参数w和参数b,我们需要一个代价函数,通过训练的方式得到w,b.<br>逻辑回归的输出函数:<br><img src="2-3-1.jpg" alt=""><br>为了让模型通过学习调整参数,你需要给予一个m样本的训练集,这回让你在训练集上找到参数w和参数b.<br>对于训练集的预测值,我们将其写成$\hat y$,这个值自然是与y越接近越好<br>损失函数:<br>损失函数又叫误差函数,用来衡量算法的运行情况,Loss function:$L(\hat y,y)$,损失函数L用来衡量预测输出值和实际值有多接近,一般取预测值和实际值的平方差或者他们平方差的一般,但在逻辑回归中我们不这么做,因为当我们在学习逻辑回归参数的时候,会发现我们的优目标不是凸优化,只能找到多个局部最优值,梯度下降法很可能找不到全局最优值,虽然平方差是一个不错的损失函数,但是我们在逻辑回归函数中会用:$L(\hat y ,y) = -ylog(\hat y)-(1-y)log(1-\hat y)$作为损失函数.<br>为什么呢?因为这个函数能使逻辑回归损失函数的误差尽可能的小.例如:  </p>
+<ul>
+<li>当y=1时损失函数$L=-log(\hat y)$,如果想要损失函数L尽可能的小,纳闷$\hat y$就要尽可能的大,因为sigmoid函数取值为[0,1],所以$\hat y$会无限接近于1.</li>
+<li>当y=0时损失函数$L = -log(1-\hat y)$,如果想要损失函数L尽可能的小,那么$\hat y$就要尽可能的小,一位sigmoid函数取值[0,1],所以$\hat y$会无限接近与0.<br><strong>在这门课中有很多的函数效果和现在这个类似,就是如果y等于1,我们就尽可能让$\hat y$变大,如果y等于0,我们就尽可能让$\hat y$变小.</strong>除了衡量单个训练样本的损失函数,还有算法的代价函数,算法的代价函数是对m个样本的损失函数求和然后除以m:<br><img src="2-3-2.jpg" alt=""></li>
+</ul>
+<hr>
+<h2 id="梯度下降法-Gradient-Descent"><a href="#梯度下降法-Gradient-Descent" class="headerlink" title="梯度下降法(Gradient Descent)"></a>梯度下降法(Gradient Descent)</h2><p>梯度下降法可以做什么?<br>在测试集上,通过最小化代价函数(成本函数)J(w,b)来训练的参数w和b<br><img src="2-4-1.jpg" alt=""><br>如图,在第二行给出了和之前一样的逻辑回归算法的代价函数(成本函数)<br>梯度下降法的形象化说明:<br><img src="2-4-2.jpg" alt=""><br>在这个图中,横轴表示你的空间参数w和b,在实践中,w可以是更高的维度,但是为了绘图,我们定义w和b都是单一实数,代价函数J(w,b)是在水平轴w和b上的曲面,因此曲面的高度就是J(w,b)在某一点的函数值.我们所做的就是找到使得代价函数J(w,b)函数值的最小值,取其对应的参数w和b.<br>假定代价函数(成本函数)J(w)只有一个参数w,即用一位曲线代替多维曲线,</p>
+<script type="math/tex; mode=display">w:=w-a\frac {dJ(w)}{dw}</script>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/uploads/alipay.jpg" alt="郭子淳 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag"># 神经网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/08/%E3%80%8A%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%8B%E4%BC%8D%E2%80%94%E2%80%94%E4%B8%B2/" rel="prev" title="《大话数据结构》伍——串">
+      <i class="fa fa-chevron-left"></i> 《大话数据结构》伍——串
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/15/Mathjax%E5%85%AC%E5%BC%8F%E4%B8%80%E8%A7%88/" rel="next" title="Mathjax公式一览">
+      Mathjax公式一览 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深度学习引言"><span class="nav-number">1.</span> <span class="nav-text">深度学习引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎"><span class="nav-number">1.1.</span> <span class="nav-text">欢迎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是神经网络-What-is-Neural-Network"><span class="nav-number">1.2.</span> <span class="nav-text">什么是神经网络?(What is Neural Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的监督学习-Supervised-Learning-with-Neural-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">神经网络的监督学习(Supervised Learning with Neural Networks)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络的编程基础-Basics-of-Neural-Network-programming"><span class="nav-number">2.</span> <span class="nav-text">神经网络的编程基础(Basics of Neural Network programming)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二分类-Binary-Classification"><span class="nav-number">2.1.</span> <span class="nav-text">二分类(Binary Classification)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归-Logistic-Regression"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑回归(Logistic Regression)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归的代价函数-Logistic-Regression-Cost-Function"><span class="nav-number">2.3.</span> <span class="nav-text">逻辑回归的代价函数(Logistic Regression Cost Function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降法-Gradient-Descent"><span class="nav-number">2.4.</span> <span class="nav-text">梯度下降法(Gradient Descent)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="郭子淳"
+      src="/uploads/blog_face2.jpg">
+  <p class="site-author-name" itemprop="name">郭子淳</p>
+  <div class="site-description" itemprop="description">越努力，越幸运！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Chun-CE" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Chun-CE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/6436162979" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;6436162979" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭子淳</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>
