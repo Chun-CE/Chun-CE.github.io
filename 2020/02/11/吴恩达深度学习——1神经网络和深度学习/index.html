@@ -63,8 +63,9 @@
 <meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-4-1.jpg">
 <meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-4-2.jpg">
 <meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-7-1.jpg">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/11/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%941%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2-9-1.jpg">
 <meta property="article:published_time" content="2020-02-11T10:45:36.000Z">
-<meta property="article:modified_time" content="2020-02-15T13:33:16.803Z">
+<meta property="article:modified_time" content="2020-02-18T01:19:07.051Z">
 <meta property="article:author" content="郭子淳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="神经网络">
@@ -227,7 +228,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-15 21:33:16" itemprop="dateModified" datetime="2020-02-15T21:33:16+08:00">2020-02-15</time>
+                <time title="修改时间：2020-02-18 09:19:07" itemprop="dateModified" datetime="2020-02-18T09:19:07+08:00">2020-02-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,7 +277,7 @@
 <li>Y = [$y^{(1)},y^{(2)},…,y^{(m)}$]:对应表示所有训练数据集的输出值,维度为1*m<br>用一对(x,y)来表示一个单独的样本,x表示n_x维的特征向量,y表示标签(输出结果)只能为0or1.而训练集将有m个训练样本组成,其中$(x^{(1)},y^{(1)})$表示第一个样本的输入输出,以此类推,然后所有的这些仪器表示整个训练集.又是偶户为了强调这是训练样本的个数,会写作$M_{train}$,当涉及到测试集的时候,我们会之用$M_{test}$来表示测试机的样本数.<br>为了能把数据集表示的更紧凑一点,我们会定义一个矩阵用大写的X表示,他由输入向量$x^{(1)};x^{(2)}$等组成,把$x^{(1)}$作为第一列,$x^{(2)}$作为第二列…就得到了训练集矩阵X,所以这个矩阵由m列,m是训练集的样本数量,然后这个矩阵的高度即为$n_x$.<br>简单温习一下:X是一个规模为$n_x$乘以m的矩阵,当用python来实现时,会用到X.shape(),这是一条Python命令,用于显示矩阵的规模,即X.shape等于$(n_x,m)$.<br>那么怎么输出标签y呢?用Y=[$y^{(1)},y^{(2)},…,y^{(m)}$]来表示,是一个1乘以m的矩阵,同样适用Y.shape==(1,m)</li>
 </ul>
 <hr>
-<h2 id="逻辑回归-Logistic-Regression"><a href="#逻辑回归-Logistic-Regression" class="headerlink" title="逻辑回归(Logistic Regression)"></a>逻辑回归(Logistic Regression)</h2><p>本节将会主要极少逻辑回归的Hypothesis Function(假设函数)<br>为了时变图片,你想要一个算法能够输出预测,现只能称之为估计值$\hat y$,也就是对实际值y的估计.更正式的说,你想让$\hat y$表示y等于1的一种坑性或是机会,前提条件是给定了输入特征X,换句话说,如果X是那张似乎是猫的图片,你想让$\hat y$来表示这是一只猫的图片的纪律是多大. X是一个$n_x$维向量(相当于有$n_x$个特征的特征向量).我们用w来表示逻辑回归的参数,这也是一个$n_x$维向量(因为w实际上是特征权重,维度和特征向量相同),参数里面还有b,这是一个实数(表示偏差).所以给出输入x以及参数w和b之后,就可以得出 $\hat y$ = $w^Tx+b$ ($w^T$表示w的转置)<br>这时候我们的道德是一个关于输入x的线性函数,但却不是一个好的算法,因为如果想要$\hat y$表示实际值y等于1的几率的话,$\hat y$应该在0到1之间.但$x^T+b$可能要比1大或者为负值,对于想要的在0和1之间的概率来说是没有意义的.因此,在逻辑回归中,我们的输出上面的线性函数作为自变量的sigmoid函数.<br>关于sigmoid的公式:$\sigma(z) = (1 + e^{-z})^{-1}$</p>
+<h2 id="逻辑回归-Logistic-Regression"><a href="#逻辑回归-Logistic-Regression" class="headerlink" title="逻辑回归(Logistic Regression)"></a>逻辑回归(Logistic Regression)</h2><p>本节将会主要极少逻辑回归的Hypothesis Function(假设函数)<br>为了时变图片,你想要一个算法能够输出预测,现只能称之为估计值$\hat y$,也就是对实际值y的估计.更正式的说,你想让$\hat y$表示y等于1的一种坑性或是机会,前提条件是给定了输入特征X,换句话说,如果X是那张似乎是猫的图片,你想让$\hat y$来表示这是一只猫的图片的纪律是多大. X是一个$n_x$维向量(相当于有$n_x$个特征的特征向量).我们用w来表示逻辑回归的参数,这也是一个$n_x$维向量(因为w实际上是特征权重,维度和特征向量相同),参数里面还有b,这是一个实数(表示偏差).所以给出输入x以及参数w和b之后,就可以得出 $\hat y$ = $w^Tx+b$ ($w^T$表示w的转置)<br>这时候我们得到的是一个关于输入x的线性函数,但却不是一个好的算法,因为如果想要$\hat y$表示实际值y等于1的几率的话,$\hat y$应该在0到1之间.但$x^T+b$可能要比1大或者为负值,对于想要的在0和1之间的概率来说是没有意义的.因此,在逻辑回归中,我们的输出上面的线性函数作为自变量的sigmoid函数.<br>关于sigmoid的公式:$\sigma(z) = (1 + e^{-z})^{-1}$</p>
 <hr>
 <h2 id="逻辑回归的代价函数-Logistic-Regression-Cost-Function"><a href="#逻辑回归的代价函数-Logistic-Regression-Cost-Function" class="headerlink" title="逻辑回归的代价函数(Logistic Regression Cost Function)"></a>逻辑回归的代价函数(Logistic Regression Cost Function)</h2><p>为什么需要代价函数:<br>为了训练逻辑回归模型的参数w和参数b,我们需要一个代价函数,通过训练的方式得到w,b.<br>逻辑回归的输出函数:<br><img src="2-3-1.jpg" alt=""><br>为了让模型通过学习调整参数,你需要给予一个m样本的训练集,这回让你在训练集上找到参数w和参数b.<br>对于训练集的预测值,我们将其写成$\hat y$,这个值自然是与y越接近越好<br>损失函数:<br>损失函数又叫误差函数,用来衡量算法的运行情况,Loss function:$L(\hat y,y)$,损失函数L用来衡量预测输出值和实际值有多接近,一般取预测值和实际值的平方差或者他们平方差的一般,但在逻辑回归中我们不这么做,因为当我们在学习逻辑回归参数的时候,会发现我们的优目标不是凸优化,只能找到多个局部最优值,梯度下降法很可能找不到全局最优值,虽然平方差是一个不错的损失函数,但是我们在逻辑回归函数中会用:$L(\hat y ,y) = -ylog(\hat y)-(1-y)log(1-\hat y)$作为损失函数.<br>为什么呢?因为这个函数能使逻辑回归损失函数的误差尽可能的小.例如:  </p>
 <ul>
@@ -288,7 +289,29 @@
 <script type="math/tex; mode=display">w:=w-a\frac {dJ(w)}{dw}</script><p>:= 表示更新参数<br>a 表示学习率(learning rate),用来控制步长(step),即向下走一步的长度$\frac {dJ(w)}{dw}$就是函数J(w)对w的求导(derivative)<br>逻辑回归的代价函数(成本函数)J(w,b)是含有两个参数的:  </p>
 <script type="math/tex; mode=display">w:=w-a\frac {\partial J(w,b)}{\partial w}        b:=b-a\frac {\partial J(w,b)}{\partial b}</script><p>$\partial$ 表示求偏导符号,可以读作round  </p>
 <hr>
-<h2 id="计算图-Computation-Graph"><a href="#计算图-Computation-Graph" class="headerlink" title="计算图(Computation Graph)"></a>计算图(Computation Graph)</h2><p>可以说,一个神经网络的计算,都是按照前向或后向传播过程组织的.首先我们计算出一个新的网络的输出(前向过程),紧接着进行一个反向传输操作.后者我们用来计算出对应的梯度或导数.计算图解释了为什么我们用这种方式组织这些计算过程.<br>我们尝试计算函数J,J是由三个变量a,b,c组成的函数,这个函数是3(a+bc).计算这个函数实际上有三个不同的步骤,首席那是计算b*c,我们把它储存到变量u中,因此u=bc;然后计算v=a+u;最后输出J = 3v,这就是计算的函数J.而这三步可以画作下图<br><img src="2-7-1.jpg" alt=""><br>由本例可以看出,通过一个从左向右的过程,你可以计算出J的值.为了计算导数,从左到右(红色箭头,和蓝色箭头的过程相反)的过程是用于计算倒数最自然的方式.  </p>
+<h2 id="计算图-Computation-Graph"><a href="#计算图-Computation-Graph" class="headerlink" title="计算图(Computation Graph)"></a>计算图(Computation Graph)</h2><p>可以说,一个神经网络的计算,都是按照前向或后向传播过程组织的.首先我们计算出一个新的网络的输出(前向过程),紧接着进行一个反向传输操作.后者我们用来计算出对应的梯度或导数.计算图解释了为什么我们用这种方式组织这些计算过程.<br>我们尝试计算函数J,J是由三个变量a,b,c组成的函数,这个函数是3(a+bc).计算这个函数实际上有三个不同的步骤,首席那是计算b*c,我们把它储存到变量u中,因此u=bc;然后计算v=a+u;最后输出J = 3v,这就是计算的函数J.而这三步可以画作下图<br><img src="2-7-1.jpg" alt=""><br>由本例可以看出,通过一个从左向右的过程,你可以计算出J的值.为了计算导数,从左到右(红色箭头,和蓝色箭头的过程相反)的过程是用于计算导数最自然的方式.  </p>
+<hr>
+<h2 id="逻辑回归中的梯度下降-Logistic-Regression-Gradient-Descent"><a href="#逻辑回归中的梯度下降-Logistic-Regression-Gradient-Descent" class="headerlink" title="逻辑回归中的梯度下降(Logistic Regression Gradient Descent)"></a>逻辑回归中的梯度下降(Logistic Regression Gradient Descent)</h2><p>假设样本只有两个特征$x_1$和$x_2$,为了计算z,我们需要输入参数$w_1$,$w_2$和b,除此之外还有特征值$x_1$和$x_2$.因此z的计算公式为:$z=w_1x_1 + w_2x_2 + b$<br>回想一下:  </p>
+<ul>
+<li>逻辑回归的公式定义如下:$\hat y = a = \sigma (z)$其中$z = w^Tx+b$,$\sigma (z) = \frac 1{1+e_{-z}}$  </li>
+<li>损失函数:$L({\hat y}^{(i)},y^{(i)} = -y^{(i)}log{\hat y}^{(i)}) - (1-{\hat y}^{(i)})log(1-{\hat y}^{(i)})$  </li>
+<li>代价函数:$J(w,b) = \frac 1m\sum^m_iL({\hat y}^{(i)},y^{(i)})$  </li>
+</ul>
+<p>假设现在只考虑单个样本的情况,单个样本的代价函数定义如下:<br>L(a,y) = -(ylog(a)+(1-y)log(1-a))<br>其中a是逻辑回归的输出,y是样本的标签值.w和b的修正值可以表达如下:<br>$w:= w-a\frac{\partial J(w,b)}{\partial w}$,$b:= b-a\frac{\partial J(w,b)}{\partial b}$<br><img src="2-9-1.jpg" alt=""><br>为了使得逻辑回归中最小化代价函数L(a,y),我们需要做的仅仅是修改参数w和b的值.因为我们想要计算出的代价函数L(a,y)的导数,首先我们需要反向计算出代价函数L(a,y)关于a的导数,在编写代码时可以使用da来表示$\frac {dL(a,y)}{da}$  </p>
+<script type="math/tex; mode=display">\frac {dL(a,y)}{da} = -y/a + (1-y)/(1-a)</script><script type="math/tex; mode=display">dz = \frac {dL}{dz} = (\frac {dL}{da})(\frac {da}{dz}) = (-\frac ya+\frac{(1-y)}{1-a})*a(1-a) = a-y</script><p>现在进行最后一步反向推导,也就是计算w和b变化对代价函数L的影响:<br>1<a href="2-9-2"></a><br>因此,关于单个样本的梯度下降算法,所需要做的如下:  </p>
+<ol>
+<li>使用公式$dz = (a-y)$计算dz</li>
+<li>使用$dw_1 = x_1<em>dz$计算$dw_1$,$dw_2 = x_2</em>dz$计算$dw_2$,$db=dz$计算db</li>
+<li>更新$w_1 = w_1 - adw_1$,更新$w_2 = w_2 - adw_2$,更新$b = b-adb$  </li>
+</ol>
+<hr>
+<h2 id="m个样本的梯度下降-Gradient-Descent-on-m-Examples"><a href="#m个样本的梯度下降-Gradient-Descent-on-m-Examples" class="headerlink" title="m个样本的梯度下降(Gradient Descent on m Examples)"></a>m个样本的梯度下降(Gradient Descent on m Examples)</h2><p>首先时刻记住关于损失函数J(w,b)的定义:$J(w,b) = \frac 1m\sum^m_{i=1}L(a^{(i)},y^{(i)})$<br>上一节是对于任意单个训练样本,而全局代价函数其实就是1到m项各个损失的平均,它表明全局代价函数对$w_1$的微分,对$w_1$的微分也同样是各项损失对$w_1$微分的平均<br>所以这里有很多细节,但让我们被这些装进一个具体的算法,同时需要一起应用的就是逻辑回归和梯度下降.<br>我们初始化J = 0,$dw_1 = 0$,$dw_2 = 0$,db = 0;<br>代码流程(伪代码):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">J &#x3D; 0;dw1 &#x3D; 0;dw2 &#x3D; 0;db &#x3D; 0;</span><br><span class="line">for i &#x3D; i to m</span><br><span class="line">  z(i) &#x3D; wx(i)+b;</span><br><span class="line">  a(i) &#x3D; sigmoid(z(i));</span><br><span class="line">  J +&#x3D; -[y(i)log(a(i))+(1-y(i))log(1-a(i))];</span><br><span class="line">  dz(i) &#x3D; a(i)-y(i);</span><br><span class="line">  dw1 +&#x3D; x1(i)dz(i);  &#x2F;&#x2F;当特征数较多时,需要使用循环</span><br><span class="line">  dw2 +&#x3D; x2(i)dz(i);;</span><br><span class="line">  db +&#x3D; dz(i);</span><br><span class="line">J &#x2F;&#x3D; m;</span><br><span class="line">dw1 &#x2F;&#x3D; m;</span><br><span class="line">dw2 &#x2F;&#x3D; m;</span><br><span class="line">db &#x2F;&#x3D; m;</span><br><span class="line">w &#x3D; w-alpha*dw;</span><br><span class="line">b &#x3D; b-alpha*db;</span><br></pre></td></tr></table></figure><br>这种算法看上去很简单,但是也有两个缺点:  </p>
+<ul>
+<li>需要编写两个for循环,第一个for循环是一个小循环遍历m个训练样本,第二个for循环是一个遍历所有特征的for循环,本例中只有2个特征,在特征变多时,确实需要.</li>
+<li>在深度学习的算法中,代码中显式地使用for循环会使算法很低效,同时在深度学习领域会有越来越大的数据集.所以能够应用你的算法且没有显式地for循环很重要,这回帮助你使用更大的数据集.有一些<strong>向量化</strong>的技术能够帮你摆脱显式for循环  </li>
+</ul>
+<hr>
+<h2 id="向量化-Vextorization"><a href="#向量化-Vextorization" class="headerlink" title="向量化(Vextorization)"></a>向量化(Vextorization)</h2><p>向量化是非常基础的去除代码中for训话的艺术.<br>在逻辑回归中你需要去计算$z = w^Tx+b$w,x都是列向量,,如果有很多的特征那么就会有一个非常大的向量,所以w</p>
 
     </div>
 
@@ -389,7 +412,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深度学习引言"><span class="nav-number">1.</span> <span class="nav-text">深度学习引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎"><span class="nav-number">1.1.</span> <span class="nav-text">欢迎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是神经网络-What-is-Neural-Network"><span class="nav-number">1.2.</span> <span class="nav-text">什么是神经网络?(What is Neural Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的监督学习-Supervised-Learning-with-Neural-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">神经网络的监督学习(Supervised Learning with Neural Networks)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络的编程基础-Basics-of-Neural-Network-programming"><span class="nav-number">2.</span> <span class="nav-text">神经网络的编程基础(Basics of Neural Network programming)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二分类-Binary-Classification"><span class="nav-number">2.1.</span> <span class="nav-text">二分类(Binary Classification)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归-Logistic-Regression"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑回归(Logistic Regression)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归的代价函数-Logistic-Regression-Cost-Function"><span class="nav-number">2.3.</span> <span class="nav-text">逻辑回归的代价函数(Logistic Regression Cost Function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降法-Gradient-Descent"><span class="nav-number">2.4.</span> <span class="nav-text">梯度下降法(Gradient Descent)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算图-Computation-Graph"><span class="nav-number">2.5.</span> <span class="nav-text">计算图(Computation Graph)</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深度学习引言"><span class="nav-number">1.</span> <span class="nav-text">深度学习引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎"><span class="nav-number">1.1.</span> <span class="nav-text">欢迎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是神经网络-What-is-Neural-Network"><span class="nav-number">1.2.</span> <span class="nav-text">什么是神经网络?(What is Neural Network)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络的监督学习-Supervised-Learning-with-Neural-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">神经网络的监督学习(Supervised Learning with Neural Networks)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络的编程基础-Basics-of-Neural-Network-programming"><span class="nav-number">2.</span> <span class="nav-text">神经网络的编程基础(Basics of Neural Network programming)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二分类-Binary-Classification"><span class="nav-number">2.1.</span> <span class="nav-text">二分类(Binary Classification)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归-Logistic-Regression"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑回归(Logistic Regression)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归的代价函数-Logistic-Regression-Cost-Function"><span class="nav-number">2.3.</span> <span class="nav-text">逻辑回归的代价函数(Logistic Regression Cost Function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降法-Gradient-Descent"><span class="nav-number">2.4.</span> <span class="nav-text">梯度下降法(Gradient Descent)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算图-Computation-Graph"><span class="nav-number">2.5.</span> <span class="nav-text">计算图(Computation Graph)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归中的梯度下降-Logistic-Regression-Gradient-Descent"><span class="nav-number">2.6.</span> <span class="nav-text">逻辑回归中的梯度下降(Logistic Regression Gradient Descent)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m个样本的梯度下降-Gradient-Descent-on-m-Examples"><span class="nav-number">2.7.</span> <span class="nav-text">m个样本的梯度下降(Gradient Descent on m Examples)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量化-Vextorization"><span class="nav-number">2.8.</span> <span class="nav-text">向量化(Vextorization)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,20 +428,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
