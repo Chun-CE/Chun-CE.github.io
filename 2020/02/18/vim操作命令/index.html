@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-mystyle.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-mystyle.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-mystyle.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://Chun-CE.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","width":200,"display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="世人都说vim好.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim操作命令">
+<meta property="og:url" content="https://chun-ce.github.io/2020/02/18/vim%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
+<meta property="og:site_name" content="Chun-CE">
+<meta property="og:description" content="世人都说vim好.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chun-ce.github.io/2020/02/18/vim%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/vim%E9%94%AE%E7%9B%98%E5%9B%BE.gif">
+<meta property="article:published_time" content="2020-02-18T03:01:17.000Z">
+<meta property="article:modified_time" content="2020-02-19T03:08:47.573Z">
+<meta property="article:author" content="郭子淳">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chun-ce.github.io/2020/02/18/vim%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/vim%E9%94%AE%E7%9B%98%E5%9B%BE.gif">
+
+<link rel="canonical" href="https://chun-ce.github.io/2020/02/18/vim%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>vim操作命令 | Chun-CE</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chun-CE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chun-ce.github.io/2020/02/18/vim%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/blog_face2.jpg">
+      <meta itemprop="name" content="郭子淳">
+      <meta itemprop="description" content="越努力，越幸运！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chun-CE">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vim操作命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-18 11:01:17" itemprop="dateCreated datePublished" datetime="2020-02-18T11:01:17+08:00">2020-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-19 11:08:47" itemprop="dateModified" datetime="2020-02-19T11:08:47+08:00">2020-02-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E5%AD%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">杂学笔记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">世人都说vim好.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是vim"><a href="#什么是vim" class="headerlink" title="什么是vim?"></a>什么是vim?</h1><p>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。<br>简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。<br>连 vim 的官方网站 (<a href="http://www.vim.org" target="_blank" rel="noopener">http://www.vim.org</a>) 自己也说 vim 是一个程序开发工具而不是文字处理软件。<br>vim 键盘图：<br><img src="vim键盘图.gif" alt="vim键盘图"></p>
+<hr>
+<h1 id="vim的使用"><a href="#vim的使用" class="headerlink" title="vim的使用"></a>vim的使用</h1><h2 id="motion"><a href="#motion" class="headerlink" title="motion"></a>motion</h2><p>motion: 表示操作范围的指令  </p>
+<ul>
+<li><code>num</code> + <code>motion</code> = <code>num</code>个<code>motion</code></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">按键</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">h</td>
+<td style="text-align:left">左</td>
+</tr>
+<tr>
+<td style="text-align:center">j</td>
+<td style="text-align:left">下</td>
+</tr>
+<tr>
+<td style="text-align:center">k</td>
+<td style="text-align:left">上</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td style="text-align:left">右</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:left">光标定位至行首</td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:left">(脱字符)同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:left">光标定位至行尾</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:left">光标定位至光标<strong>所在单词</strong>的起始处</td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:left">光标定位至光标<strong>所在单词</strong>的结尾处</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:left">光标定位至<strong>下一个单词</strong>的起始处</td>
+</tr>
+<tr>
+<td style="text-align:center">gg</td>
+<td style="text-align:left">光标定位至文件开头</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td style="text-align:left">光标定位至文件末尾</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">基本模式</th>
+<th style="text-align:center">派生模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">普通模式</td>
+<td style="text-align:center">操作符等待模式</td>
+</tr>
+<tr>
+<td style="text-align:center">插入模式</td>
+<td style="text-align:center">插入普通模式</td>
+</tr>
+<tr>
+<td style="text-align:center">可视模式</td>
+<td style="text-align:center">插入可视模式</td>
+</tr>
+<tr>
+<td style="text-align:center">选择模式</td>
+<td style="text-align:center">插入选择模式</td>
+</tr>
+<tr>
+<td style="text-align:center">命令行模式</td>
+<td style="text-align:center">替换模式</td>
+</tr>
+<tr>
+<td style="text-align:center">Ex模式</td>
+<td style="text-align:center">\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>插入模式:  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">敲击按键</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">在光标左插入</td>
+</tr>
+<tr>
+<td style="text-align:center">I</td>
+<td style="text-align:left">在光标所在行的行首插入</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:left">在光标右插入</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:left">在光标所在行的行尾插入</td>
+</tr>
+<tr>
+<td style="text-align:center">o</td>
+<td style="text-align:left">在光标所在行的下方插入空行</td>
+</tr>
+<tr>
+<td style="text-align:center">O</td>
+<td style="text-align:left">在光标所在行的上方插入空行</td>
+</tr>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:left">删除光标指定的字符并插入</td>
+</tr>
+<tr>
+<td style="text-align:center">S</td>
+<td style="text-align:left">删除光标所在行并插入</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+<th>技巧</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>删除</td>
+<td><code>d</code> + <code>num</code> + <code>motion</code> = 删除<code>num</code>个<code>motion</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>vim中的删除其实是将内容移到寄存器中,相当于剪切功能</td>
+</tr>
+<tr>
+<td>y</td>
+<td>拷贝</td>
+<td><code>y</code> + <code>num</code> + <code>motion</code> = 拷贝<code>num</code>个<code>motion</code></td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+<td>小写的<code>p</code>是粘贴至光标后,大写的<code>P</code>是光标前</td>
+</tr>
+<tr>
+<td>r</td>
+<td>替换</td>
+<td>替换当前单个字符,<code>R</code>进入替换模式</td>
+</tr>
+<tr>
+<td>c</td>
+<td>修改</td>
+<td>删除当前选中并进入插入模式</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销</td>
+<td>撤销最后一次修改,<code>U</code>撤销当前行修改</td>
+</tr>
+<tr>
+<td>%</td>
+<td>定位括号</td>
+<td>快速找到另一半括号</td>
+</tr>
+<tr>
+<td><code>ctrl</code>+r</td>
+<td>恢复</td>
+<td>恢复撤销的内容</td>
+</tr>
+<tr>
+<td><code>ctrl</code>+g</td>
+<td>文件信息</td>
+<td>查看文件信息</td>
+</tr>
+<tr>
+<td>行号+G</td>
+<td>跳转</td>
+<td>跳转值行号处</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>缩进</td>
+<td><code>num</code>+<code>&gt;&gt;</code> = 缩进<code>num</code>行</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;</code></td>
+<td>反缩进</td>
+<td><code>num</code>+<code>&lt;&lt;</code> = 反缩进<code>num</code>行</td>
+</tr>
+<tr>
+<td><code>:!</code></td>
+<td>shell</td>
+<td><code>:!</code>+命令,如,<code>:! ls</code></td>
+</tr>
+<tr>
+<td><code>:w 文件名</code></td>
+<td>另存为</td>
+<td>按 v 进入可视模式,选中后<code>:w 文件名</code>为局部另存为,加<code>!</code>为强制执行</td>
+</tr>
+<tr>
+<td><code>:r 文件名</code></td>
+<td>合并文件</td>
+<td>其实是把另一个文件内容复制到你的光标后</td>
+</tr>
+<tr>
+<td><code>-o</code></td>
+<td>打开多个文件</td>
+<td><code>vim -o test1 test2</code>,<code>-o</code>垂直,<code>-o</code>水平</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>ctrl + w + w</code>切换至下一个文件,<code>ctrl + w + 方向</code>切换文件,<code>:wqa</code>保存并退出</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>查找</td>
+<td>/</td>
+<td>?</td>
+</tr>
+<tr>
+<td>搜索方向</td>
+<td>从光标向后</td>
+<td>从光标向前</td>
+</tr>
+<tr>
+<td>n</td>
+<td>向后搜索下一个</td>
+<td>向前搜索下一个</td>
+</tr>
+<tr>
+<td>N</td>
+<td>向前搜索下一个</td>
+<td>向后搜索下一个</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>. * [ ] ^ % / ? ~ $  前需加反斜杠 \</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>替换</td>
+<td>:s</td>
+<td><code>:s/old/new</code> 将光标所在行第一个old替换为new</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>:s/old/new/g</code> 将光标所在行的所有old替换为new</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>:%s/old/new/g</code> 将整个文件中所有的old替换为new</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>:%s/old/new/gc</code> 同上,但在每次替换前先请示</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>:5,13s/old/new/g</code> 替换第5行到第13行中所有的old为new</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="拷贝-删除与motion"><a href="#拷贝-删除与motion" class="headerlink" title="拷贝/删除与motion"></a>拷贝/删除与motion</h2><ul>
+<li><code>d</code> + <code>num</code> + <code>motion</code> = 删除<code>num</code>个<code>motion</code>  </li>
+<li><code>y</code> + <code>num</code> + <code>motion</code> = 拷贝<code>num</code>个<code>motion</code>  </li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">按键</th>
+<th style="text-align:center">按键</th>
+<th style="text-align:left">命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">x</td>
+<td style="text-align:left">删除单字符</td>
+</tr>
+<tr>
+<td style="text-align:center">y0</td>
+<td style="text-align:center">d0</td>
+<td style="text-align:left">(拷贝/删除)当前位置到该行行首</td>
+</tr>
+<tr>
+<td style="text-align:center">y^</td>
+<td style="text-align:center">d^</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">y$</td>
+<td style="text-align:center">d$</td>
+<td style="text-align:left">(拷贝/删除)当前位置到该行行尾</td>
+</tr>
+<tr>
+<td style="text-align:center">yb</td>
+<td style="text-align:center">db</td>
+<td style="text-align:left">(拷贝/删除)当前位置到单词起始处</td>
+</tr>
+<tr>
+<td style="text-align:center">ye</td>
+<td style="text-align:center">de</td>
+<td style="text-align:left">(拷贝/删除)当前位置到单词结尾处</td>
+</tr>
+<tr>
+<td style="text-align:center">yw</td>
+<td style="text-align:center">dw</td>
+<td style="text-align:left">(拷贝/删除)当前位置到下个单词起始处</td>
+</tr>
+<tr>
+<td style="text-align:center">yh</td>
+<td style="text-align:center">dh</td>
+<td style="text-align:left">(拷贝/删除)左边第一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">yl</td>
+<td style="text-align:center">dl</td>
+<td style="text-align:left">(拷贝/删除)右边第一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">yj</td>
+<td style="text-align:center">dj</td>
+<td style="text-align:left">(拷贝/删除)所在行及下一行</td>
+</tr>
+<tr>
+<td style="text-align:center">yk</td>
+<td style="text-align:center">dk</td>
+<td style="text-align:left">(拷贝/删除)所在行及上一行</td>
+</tr>
+<tr>
+<td style="text-align:center">yy</td>
+<td style="text-align:center">dd</td>
+<td style="text-align:left">(拷贝/删除)当前行</td>
+</tr>
+<tr>
+<td style="text-align:center">ygg</td>
+<td style="text-align:center">dgg</td>
+<td style="text-align:left">(拷贝/删除)当前行到文件开头</td>
+</tr>
+<tr>
+<td style="text-align:center">yG</td>
+<td style="text-align:center">dG</td>
+<td style="text-align:left">(拷贝/删除)当前行到文件结尾</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/uploads/alipay.jpg" alt="郭子淳 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vim/" rel="tag"># vim</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/18/Linux%E4%B8%8Bgcc%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="Linux下gcc的使用">
+      <i class="fa fa-chevron-left"></i> Linux下gcc的使用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是vim"><span class="nav-number">1.</span> <span class="nav-text">什么是vim?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim的使用"><span class="nav-number">2.</span> <span class="nav-text">vim的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#motion"><span class="nav-number">2.1.</span> <span class="nav-text">motion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式"><span class="nav-number">2.2.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">2.3.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝-删除与motion"><span class="nav-number">2.4.</span> <span class="nav-text">拷贝&#x2F;删除与motion</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="郭子淳"
+      src="/uploads/blog_face2.jpg">
+  <p class="site-author-name" itemprop="name">郭子淳</p>
+  <div class="site-description" itemprop="description">越努力，越幸运！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Chun-CE" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Chun-CE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/6436162979" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;6436162979" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭子淳</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
